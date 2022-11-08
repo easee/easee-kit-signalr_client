@@ -205,7 +205,11 @@ class HubConnection {
       _resetTimeoutPeriod();
       _resetKeepAliveInterval();
 
-      await _handshakeCompleter!.future;
+      if(_handshakeCompleter != null) {
+        await _handshakeCompleter!.future;
+      } else {
+        _logger?.info("_handshakeCompleter is null");
+      }
 
       // It's important to check the stopDuringStartError instead of just relying on the handshakePromise
       // being rejected on close, because this continuation can run after both the handshake completed successfully
