@@ -32,7 +32,7 @@ abstract class ViewModel {
       TPropertyType currentValue,
       TPropertyType newValue,
       SetValue<TPropertyType> setNewValue) {
-    assert(setNewValue != null);
+    // assert(setNewValue != null);
 
     if (currentValue == newValue) {
       return false;
@@ -47,9 +47,9 @@ abstract class ViewModel {
     propertyChanges.add(PropertyChangedEvent(this, propertyName));
   }
 
-  Observable<PropertyChangedEvent> whenPropertiesChanged(
+  Stream<PropertyChangedEvent> whenPropertiesChanged(
       List<String> propertyNames) {
-    assert(propertyNames != null || propertyNames.length != 0);
+    assert(propertyNames.length != 0);
 
     return propertyChanges
         .where((event) =>
@@ -61,8 +61,8 @@ abstract class ViewModel {
     }));
   }
 
-  Observable<void> whenPropertiesChangedHint(List<String> propertyNames) {
-    assert(propertyNames != null || propertyNames.length != 0);
+  Stream<void> whenPropertiesChangedHint(List<String> propertyNames) {
+    assert(propertyNames.length != 0);
 
     return propertyChanges
         .where((event) =>
@@ -74,7 +74,7 @@ abstract class ViewModel {
     }));
   }
 
-  Observable<PropertyChangedEvent> whenPropertyChanged(String propertyName) {
+  Stream<PropertyChangedEvent> whenPropertyChanged(String propertyName) {
     return propertyChanges
         .where((event) =>
             isBlank(event.propertyName) || event.propertyName == propertyName)
@@ -84,7 +84,7 @@ abstract class ViewModel {
     }));
   }
 
-  Observable whenPropertyChangedHint(String propertyName) {
+  Stream whenPropertyChangedHint(String propertyName) {
     return propertyChanges
         .where((event) =>
             isBlank(event.propertyName) || event.propertyName == propertyName)

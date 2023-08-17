@@ -3,6 +3,8 @@
 .idea
 .vscode
 
+android/local.properties
+
 .packages
 .dart_tool/
 .pub/

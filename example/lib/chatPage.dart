@@ -8,7 +8,7 @@ class ChatPage extends StatelessWidget {
 
 // Methods
 
-  ChatPage({Key key}) : super(key: key);
+  ChatPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class MessageChatView extends StatelessWidget {
           children: <Widget>[
             Text(
               "Messages:",
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             ViewModelPropertyWidgetBuilder<bool>(
                 viewModel: vm,

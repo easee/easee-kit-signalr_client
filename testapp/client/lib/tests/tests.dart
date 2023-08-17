@@ -17,8 +17,7 @@ class Tests {
   // Methods
   List<Test> get items => _items;
 
-  Tests(HubConnectionProvider connectionProvider, Logger logger) {
-    _items = [];
+  Tests(HubConnectionProvider connectionProvider, Logger logger) : _items = [] {
 
     _items
         .add(ClientMethodNoParametersNoReturnValue(connectionProvider, logger));

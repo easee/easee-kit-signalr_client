@@ -14,18 +14,18 @@ typedef HubConnectionProvider = Future<HubConnection> Function();
 
 class TestsPageViewModel extends ViewModel {
 // Properties
-  Logger _logger;
-  StreamSubscription<LogRecord> _logMessagesSub;
-  Tests _tests;
+  late Logger _logger;
+  StreamSubscription<LogRecord>? _logMessagesSub;
+  late Tests _tests;
   String _serverUrl;
-  HubConnection _hubConnection;
+  HubConnection? _hubConnection;
 
-  String _errorMessage;
+  String? _errorMessage;
   static const String errorMessagePropName = "errorMessage";
-  String get errorMessage => _errorMessage;
-  set errorMessage(String value) {
+  String? get errorMessage => _errorMessage;
+  set errorMessage(String? value) {
     updateValue(
-        errorMessagePropName, _errorMessage, value, (v) => _errorMessage = v);
+        errorMessagePropName, _errorMessage, value, (v) => _errorMessage = v as String);
   }
 
   List<LogRecord> _hubLogMessages;
@@ -35,20 +35,17 @@ class TestsPageViewModel extends ViewModel {
   Tests get tests => _tests;
 
 // Methods
-  TestsPageViewModel() {
-    _hubLogMessages = [];
+  TestsPageViewModel() : _hubLogMessages = [],_serverUrl = kServerUrl + "/IntegrationTestHub" {
 
     Logger.root.level = Level.ALL;
     _logMessagesSub = Logger.root.onRecord.listen(_handleLogMessage);
-    _logger = Logger("TestsPageViewModel");
-
-    _serverUrl = kServerUrl + "/IntegrationTestHub";
+    _logger = Logger("TestsPageViewModel");    
     _tests = Tests(_getHubConnection, _logger);
   }
 
   @override
   void dispose() {
-    _logMessagesSub.cancel();
+    _logMessagesSub?.cancel();
     super.dispose();
   }
 
@@ -76,15 +73,15 @@ class TestsPageViewModel extends ViewModel {
           .withAutomaticReconnect()
           .configureLogging(logger)
           .build();
-      _hubConnection.onclose(({error}) => _logger.info("Connection Closed"));
+      _hubConnection?.onclose(({error}) => _logger.info("Connection Closed"));
     }
 
-    if (_hubConnection.state != HubConnectionState.Connected) {
-      await _hubConnection.start();
-      _logger.info("Connection state '${_hubConnection.state}'");
+    if (_hubConnection?.state != HubConnectionState.Connected) {
+      await _hubConnection?.start();
+      _logger.info("Connection state '${_hubConnection!.state}'");
     }
 
-    return _hubConnection;
+    return _hubConnection!;
   }
 
   Future<void> connect() async {
@@ -104,12 +101,12 @@ class TestsPageViewModelProvider extends ViewModelProvider<TestsPageViewModel> {
 
   // Methods
   TestsPageViewModelProvider(
-      {Key key, viewModel: TestsPageViewModel, WidgetBuilder childBuilder})
+      {Key? key, viewModel: TestsPageViewModel, required WidgetBuilder childBuilder})
       : super(key: key, viewModel: viewModel, childBuilder: childBuilder);
 
   static TestsPageViewModel of(BuildContext context) {
     return context
         .dependOnInheritedWidgetOfExactType<TestsPageViewModelProvider>()
-        .viewModel;
+        !.viewModel;
   }
 }

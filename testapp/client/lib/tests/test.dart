@@ -19,27 +19,25 @@ abstract class Test extends ViewModel {
   bool get isExecuting => _isExecuting;
   set isExecuting(bool value) {
     updateValue(
-        isExecutingPropName, _isExecuting, value, (v) => _isExecuting = v);
+        isExecutingPropName, _isExecuting, value, (v) => _isExecuting = v as bool);
   }
 
-  String _errorMessage;
+  String? _errorMessage;
   static const String errorMessagePropName = "errorMessage";
-  String get errorMessage => _errorMessage;
-  set errorMessage(String value) {
+  String? get errorMessage => _errorMessage;
+  set errorMessage(String? value) {
     updateValue(
-        errorMessagePropName, _errorMessage, value, (v) => _errorMessage = v);
+        errorMessagePropName, _errorMessage, value, (v) => _errorMessage = v as String);
   }
 
   // Methods
 
   Test(HubConnectionProvider hubConnectionProvider, Logger logger,
-      String description)
-      : assert(hubConnectionProvider != null),
-        assert(logger != null),
-        assert(description != null),
+      String description) : 
         _hubConnectionProvider = hubConnectionProvider,
         this.logger = logger,
-        description = description;
+        description = description,
+				_isExecuting = false;
 
   Future<void> run() async {
     isExecuting = true;
