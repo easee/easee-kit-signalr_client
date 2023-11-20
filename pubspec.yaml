@@ -19,7 +19,7 @@ dependencies:
   sse_channel:
     git:
       url: https://github.com/easee/easee-kit-sse_channel.git
-      ref: ebf1c48b4ac3720b20a4b7ce8a36744598efaa46
+      ref: 1cb52bc28a287917c2466e5e693081707ee74082
   message_pack_dart: ^2.0.1
 
 dev_dependencies:

@@ -101,7 +101,7 @@ class TestsPageViewModelProvider extends ViewModelProvider<TestsPageViewModel> {
 
   // Methods
   TestsPageViewModelProvider(
-      {Key? key, viewModel: TestsPageViewModel, required WidgetBuilder childBuilder})
+      {Key? key, viewModel = TestsPageViewModel, required WidgetBuilder childBuilder})
       : super(key: key, viewModel: viewModel, childBuilder: childBuilder);
 
   static TestsPageViewModel of(BuildContext context) {
