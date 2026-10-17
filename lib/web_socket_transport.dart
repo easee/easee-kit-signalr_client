@@ -51,6 +51,9 @@ class WebSocketTransport implements ITransport {
     url = url!.replaceFirst('http', 'ws');
     _logger?.finest("WebSocket try connecting to '$url'.");
     _webSocket = WebSocketChannel.connect(Uri.parse(url));
+    _webSocket!.ready.catchError((Object error) {
+      _logger?.warning("WebSocket failed to connect: $error");
+    });
     opened = true;
     if (!websocketCompleter.isCompleted) websocketCompleter.complete();
     _logger?.info("WebSocket connected to '$url'.");
