@@ -453,12 +453,12 @@ class HttpConnection implements IConnection {
       final response = await _httpClient.post(negotiateUrl, options: options);
 
       if (response.statusCode != 200) {
-        return Future.error(GeneralError(
+        return await Future.error(GeneralError(
             "Unexpected status code returned from negotiate ${response.statusCode}"));
       }
 
       if (!(response.content is String)) {
-        return Future.error(
+        return await Future.error(
             GeneralError("Negotation response content must be a json."));
       }
 
