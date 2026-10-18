@@ -40,7 +40,7 @@ class WebSupportingHttpClient extends SignalRHttpClient {
 
       final httpClient = Client();
       if (_httpClientCreateCallback != null) {
-        _httpClientCreateCallback!(httpClient);
+        _httpClientCreateCallback(httpClient);
       }
 
       final abortFuture = Future<void>(() {

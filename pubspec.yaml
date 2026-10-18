@@ -5,8 +5,8 @@ homepage: https://github.com/sefidgaran/signalr_client
 publish_to: none
 
 environment:
-  sdk: ">=2.15.0 <3.0.0"
-  # flutter: ">=1.12.0"
+  sdk: ^3.10.0
+  flutter: '>=3.3.0'
 
 dependencies:
   flutter:

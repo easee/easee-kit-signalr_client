@@ -44,7 +44,7 @@ class ServerSentEventsTransport implements ITransport {
     _url = url;
 
     if (_accessTokenFactory != null) {
-      final token = await _accessTokenFactory!();
+      final token = await _accessTokenFactory();
       if (!isStringEmpty(token)) {
         final encodedToken = Uri.encodeComponent(token);
         url = url! +

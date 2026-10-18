@@ -194,7 +194,7 @@ class LongPollingTransport implements ITransport {
 
   Future<String?> _getAccessToken() async {
     if (_accessTokenFactory != null) {
-      return await _accessTokenFactory!();
+      return await _accessTokenFactory();
     }
     return null;
   }
