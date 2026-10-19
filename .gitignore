@@ -11,6 +11,7 @@ android/local.properties
 
 build/
 ios/.generated/
+**/ios/Flutter/ephemeral/
 packages
 pubspec.lock
 .flutter-plugins
