@@ -5,7 +5,7 @@ homepage: https://github.com/sefidgaran/signalr_client
 publish_to: none
 
 environment:
-  sdk: ^3.10.0
+  sdk: ^3.11.0
   flutter: '>=3.3.0'
 
 dependencies:
@@ -19,7 +19,7 @@ dependencies:
   sse_channel:
     git:
       url: https://github.com/easee/easee-kit-sse_channel.git
-      ref: 1cb52bc28a287917c2466e5e693081707ee74082
+      ref: 119e9a9bb091a3410cb42907871a22ea14c80f33
   message_pack_dart: ^2.0.1
 
 dev_dependencies:
